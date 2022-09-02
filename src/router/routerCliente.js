@@ -1,6 +1,6 @@
 import clienteController from "../controller/clienteController.js";
 
-const routerCliente = (app)=> {
+const routerClientes = (app)=> {
 
     app.get('/clientes', clienteController.buscarClientes)
     app.get('/clientes/nome/:nome', clienteController.buscarClientePeloNome)
@@ -11,8 +11,8 @@ const routerCliente = (app)=> {
     app.post('/clientes', clienteController.criarNovoCliente)
 
     app.delete('/clientes/id/:id', clienteController.deletaCliente)
-    
+
     app.put('/clientes/id/:id', clienteController.atualizaCliente)
 }
 
-export default routerCliente
+export default routerClientes

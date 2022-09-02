@@ -9,11 +9,13 @@ const livroController = {
 
     try {
       const resposta = await modelLivros.cadastroLivro(
+        body.imagem,
         body.titulo,
         body.autor,
         body.genero,
         body.formato,
         body.valor,
+        body.qtdEstoque,
         body.idioma,
         body.numeroPaginas,
       );
@@ -188,11 +190,13 @@ const livroController = {
     try {
       const resposta = await modelLivros.atualizaLivro(
         idLivro,
+        body.imagem,
         body.titulo,
         body.autor,
         body.genero,
         body.formato,
         body.valor,
+        body.qtdEstoque,
         body.idioma,
         body.numeroPaginas,
       );

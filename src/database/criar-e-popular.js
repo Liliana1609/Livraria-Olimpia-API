@@ -6,31 +6,33 @@ const db = new sqlite3.Database("olimpia.db");
 const LIVROS_SCHEMA = `
 CREATE TABLE IF NOT EXISTS "LIVROS" (
     "idLivro" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "imagem" text,
     "titulo" text,
     "autor" text,
     "genero" text,
     "formato" text,
     "valor" real,
+    "qtdEstoque" int,
     "idioma" text,
     "numeroPaginas" int
   );
 `;
 
 const LIVROS_ADD_DATA = `
-INSERT INTO LIVROS (idLivro, titulo, autor, genero, formato, valor, idioma, numeroPaginas)
+INSERT INTO LIVROS (idLivro, imagem, titulo, autor, genero, formato, valor, qtdEstoque, idioma, numeroPaginas)
 VALUES 
-    (100001, 'O Pequeno Principe',              'Antoine de Saint Exupéry',     'Literatura Infanto juvenil',   'Físico',   20, 'Português',   96),
-    (100004, 'As Brumas de Avalon',             'Marion Zimmer Bradley',        'Romance',                      'Físico',   42, 'Português',    320),
-    (100005, 'The Shining',                     'Stephen King',                 'Ficção',                       'Digital',  30, 'Inglês',       324),
-    (100006, 'Contact',                         'Carl Sagan',                   'Romance',                      'Físico',   35, 'Inglês',       432),
-    (100007, 'O Lado Feio do Amor',             'Colleen Hover',                'Romance',                      'Físico',   33, 'Português',    256),
-    (100008, 'Vulgo Grace',                     'Margaret Atwood',              'Ficção Policial',              'Digital',  89, 'Português',	512),
-    (100009, 'O Homem do Castelo Alto',	        'Philip K. Dick',               'Literatura',                   'Físico',   47, 'Português',    288),
-    (100010, 'The Book Thief',                  'Markus Zusak',                 'Romance',                      'Físico',   45, 'Alemão',       480),
-    (100011, 'Verity',                          'Colleen Hoover',               'Suspense',                     'Digital',  84, 'Inglês',       270),
-    (100012, 'The Miracle Morning',             'Hal Elrod',                    'Autoajuda',                    'Físico',   57, 'Inglês',       196),
-    (100013, 'A Invenção de Morel',             'Adolfo Bioy Casares',          'Ficção Científica',            'Físico',   43, 'Português',    160),
-    (100014, 'Duna',                            'Frank Herbert',                'Ficção Científica',            'Digital',  77, 'Inglês',       544)
+    (101, 'https://images-na.ssl-images-amazon.com/images/I/81MscdgdwLL.jpg', 'O Pequeno Principe', 'Antoine de Saint Exupéry', 'Literatura',   'Físico',   20, 3,  'Português',   96),
+    (102, 'https://images-na.ssl-images-amazon.com/images/I/A1Jqu+e4daL.jpg', 'As Brumas de Avalon',             'Marion Zimmer Bradley',        'Romance',                      'Físico',   42, 10,  'Português',    320),
+    (103, 'https://images-na.ssl-images-amazon.com/images/I/81QckmGleYL.jpg', 'The Shining',                     'Stephen King',                 'Ficção',                       'Digital',  30, 7, 'Inglês',       324),
+    (104, 'https://images-na.ssl-images-amazon.com/images/I/818Lf1Dy3zL.jpg', 'Contact',                         'Carl Sagan',                   'Romance',                      'Físico',   35, 9, 'Inglês',       432),
+    (105, 'https://images-na.ssl-images-amazon.com/images/I/81FEytag46L.jpg', 'O Lado Feio do Amor',             'Colleen Hover',                'Romance',                      'Físico',   33, 4, 'Português',    256),
+    (106, 'https://m.media-amazon.com/images/I/41EaKS-OjTL.jpg', 'Vulgo Grace',                     'Margaret Atwood',              'Ficção',              'Digital',  89, 7, 'Português',	512),
+    (107, 'https://images-na.ssl-images-amazon.com/images/I/71XIOHhYu4L.jpg', 'O Homem do Castelo Alto',	        'Philip K. Dick',               'Literatura',                   'Físico',   47, 6, 'Português',    288),
+    (108, 'https://images-na.ssl-images-amazon.com/images/I/A1D+0JA2IJL.jpg', 'The Book Thief',                  'Markus Zusak',                 'Romance',                      'Físico',   45, 2, 'Alemão',       480),
+    (109, 'https://images-na.ssl-images-amazon.com/images/I/91SDZ2eUj+L.jpg', 'Verity',                          'Colleen Hoover',               'Suspense',                     'Digital',  84, 8, 'Inglês',       270),
+    (110, 'https://m.media-amazon.com/images/I/514wTdhRvuL.jpg', 'The Miracle Morning',             'Hal Elrod',                    'Autoajuda',                    'Físico',   57, 2, 'Inglês',       196),
+    (111, 'https://images-na.ssl-images-amazon.com/images/I/A1McygfB4iS.jpg', 'A Invenção de Morel',             'Adolfo Bioy Casares',          'Ficção',            'Físico',   43, 5, 'Português',    160),
+    (112, 'https://images-na.ssl-images-amazon.com/images/I/81zN7udGRUL.jpg', 'Duna',                            'Frank Herbert',                'Ficção',            'Digital',  77, 11, 'Inglês',       544)
 `;
 
 function criaTabelaLivros() {

@@ -3,9 +3,9 @@ import dao from "../DAO/livrosDAO.js"
 
 class Livro {
 
-    cadastroLivro = async (titulo, autor, genero, formato, valor, idioma, nPaginas) =>{
+    cadastroLivro = async (imagem, titulo, autor, genero, formato, valor, qtdEstoque, idioma, nPaginas) =>{
         try {
-            const livro = this.criaLivro(titulo, autor, genero, formato, valor, idioma, nPaginas)
+            const livro = this.criaLivro(imagem, titulo, autor, genero, formato, valor, qtdEstoque, idioma, nPaginas)
             const data = await dao.cadastrarLivro(livro)
             return {
                 "dados": data,
@@ -166,17 +166,19 @@ class Livro {
         }
     }
 
-    atualizaLivro = async (idLivro, titulo, autor, genero, formato, valor, idioma, nPaginas) => {
+    atualizaLivro = async (idLivro, imagem, titulo, autor, genero, formato, valor, qtdEstoque, idioma, nPaginas) => {
         try {
-            const novoDado = this.criaLivro(titulo, autor, genero, formato, valor, idioma, nPaginas)
+            const novoDado = this.criaLivro(imagem, titulo, autor, genero, formato, valor, qtdEstoque, idioma, nPaginas)
             const livroAtual = await this.buscaLivroId(idLivro)
             if (livroAtual) {
                 const livroAtualizado = {
+                    "imagem": novoDado.imagem || livroAtual.dados.imagem,
                     "titulo": novoDado.titulo || livroAtual.dados.titulo,
                     "autor": novoDado.autor || livroAtual.dados.autor,
                     "genero": novoDado.genero || livroAtual.dados.genero,
                     "formato": novoDado.formato || livroAtual.dados.formato,
                     "valor": novoDado.valor || livroAtual.dados.valor,
+                    "qtdEstoque": novoDado.qtdEstoque || livroAtual.dados.qtdEstoque,
                     "idioma": novoDado.idioma || livroAtual.dados.idioma,
                     "numeroPaginas": novoDado.numeroPaginas || livroAtual.dados.numeroPaginas,
                     
@@ -198,14 +200,16 @@ class Livro {
 
     }
 
-    criaLivro = (titulo, autor, genero, formato, valor, idioma, numeroPaginas) => {
+    criaLivro = (imagem, titulo, autor, genero, formato, valor, qtdEstoque, idioma, numeroPaginas) => {
 
         return {
+            "imagem": imagem,
             "titulo": titulo,
             "autor": autor,
             "genero": genero,
             "formato": formato, 
             "valor": valor, 
+            "qtdEstoque": qtdEstoque,
             "idioma": idioma,
             "numeroPaginas": numeroPaginas
         }

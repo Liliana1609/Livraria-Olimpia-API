@@ -4,16 +4,18 @@ const daoLivros = {
 
     cadastrarLivro : (livro)=>{
         const ADD_LIVRO = `
-        INSERT INTO LIVROS (titulo, autor, genero, formato, valor, idioma, numeroPaginas)
-        VALUES (?,?,?,?,?,?,?)
+        INSERT INTO LIVROS (imagem, titulo, autor, genero, formato, valor, qtdEstoque, idioma, numeroPaginas)
+        VALUES (?,?,?,?,?,?,?,?,?)
         `
         return new Promise((resolve, reject)=>{
             db.run(ADD_LIVRO, 
+                livro.imagem,
                 livro.titulo, 
                 livro.autor, 
                 livro.genero, 
                 livro.formato, 
                 livro.valor, 
+                livro.qtdEstoque,
                 livro.idioma, 
                 livro.numeroPaginas,
                 (error)=>{
@@ -135,11 +137,11 @@ const daoLivros = {
     atualizaLivro : (idLivro, novoDado)=> {
         const ATUALIZA_LIVRO = `
         UPDATE LIVROS 
-        SET titulo = ?, autor = ?, genero = ?, formato = ?, valor = ?, idioma = ?, numeroPaginas = ?
+        SET imagem = ?, titulo = ?, autor = ?, genero = ?, formato = ?, valor = ?, qtdEstoque = ?, idioma = ?, numeroPaginas = ?
         WHERE idLivro = ?
         `
         return new Promise((resolve, reject)=> {
-            db.run(ATUALIZA_LIVRO, novoDado.titulo, novoDado.autor, novoDado.genero, novoDado.formato, novoDado.valor, novoDado.idioma, novoDado.numeroPaginas,
+            db.run(ATUALIZA_LIVRO, novoDado.imagem, novoDado.titulo, novoDado.autor, novoDado.genero, novoDado.formato, novoDado.valor, novoDado.qtdEstoque, novoDado.idioma, novoDado.numeroPaginas,
             idLivro, (error)=>{
                 if (error)
                     reject(error)

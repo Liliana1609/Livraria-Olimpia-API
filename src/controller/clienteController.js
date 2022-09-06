@@ -134,8 +134,8 @@ const clienteController = {
         body.email,
         body.cpf,
         body.telefone,
-        body.cep,
         body.senha,
+        body.cep,
       );
       if (resposta.status != 200) throw resposta;
       res.status(resposta.status).json({

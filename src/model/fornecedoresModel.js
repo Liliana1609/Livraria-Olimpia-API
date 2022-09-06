@@ -1,5 +1,4 @@
 import dao from '../DAO/fornecedoresDAO.js';
-import Validacoes from '../services/filtroValidacao.js';
 
 class Fornecedores {
   insereFornecedores = async (
@@ -201,7 +200,6 @@ class Fornecedores {
   };
 
   criaFornecedor = (nome, cnpj, produto, email, telefone, endereco, cep) => {
-    Validacoes.validaCNPJ(cnpj);
     return {
       nome: nome,
       cnpj: cnpj,

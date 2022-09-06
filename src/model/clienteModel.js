@@ -1,5 +1,5 @@
 import dao from '../DAO/clienteDAO.js';
-import Validacoes from '../services/filtroValidacao.js';
+
 
 class Cliente {
   inserirCliente = async (nome, email, cpf, telefone, cep, senha) => {
@@ -175,10 +175,6 @@ class Cliente {
   };
 
   criaCliente = (nome, email, cpf, telefone, senha, cep) => {
-    Validacoes.validaEmail(email);
-    Validacoes.validaSenha(senha);
-    Validacoes.validaCPF(cpf);
-
     return {
       nome: nome,
       email: email,
